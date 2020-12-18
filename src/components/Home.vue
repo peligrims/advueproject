@@ -5,6 +5,7 @@
         <v-flex xs12>
           <v-carousel>
             <v-carousel-item
+                height="800"
                 v-for="ad in promoAds"
                 :key="ad.id"
                 :src="ad.imageSrc"
@@ -29,7 +30,7 @@
           <v-card>
             <v-img
                 :src="ad.imageSrc"
-                height="200px"
+                height="400px"
             >
             </v-img>
             <v-card-title primary-title>
@@ -41,7 +42,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn text :to="'/ad/' + ad.id">Open</v-btn>
-              <v-btn raised class="primary">Buy</v-btn>
+              <app-buy-modal :ad="ad"></app-buy-modal>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -51,7 +52,7 @@
   <div v-else>
     <v-container>
       <v-layout row>
-        <v-flex xs12 class="text-xs-center pt-5">
+        <v-flex xs12 class="text-center pt-5">
           <v-progress-circular
               indeterminate
               :size="100"
@@ -77,7 +78,8 @@ export default {
     loading () {
       return this.$store.getters.loading
     }
-  }
+  },
+
 }
 </script>
 

@@ -45,7 +45,7 @@ export default {
             '',
             payload.promo
         )
-        const ad = await firebase.database().ref().push(newAd)
+        const ad = await firebase.database().ref('ads').push(newAd)
         var metadata = {
           'contentType': file.type
         };
@@ -53,7 +53,7 @@ export default {
         storageRef.child('ads/' + file.name).put(file, metadata).then(function(snapshot) {
           snapshot.ref.getDownloadURL().then(function  (url) {
             const imageSrc = url;
-            firebase.database().ref().child(ad.key).update({imageSrc})
+            firebase.database().ref('ads').child(ad.key).update({imageSrc})
             commit('setLoading', false)
             commit('createAd', {
               ...newAd,
@@ -117,8 +117,10 @@ export default {
         return ad.promo
       })
     },
-    myAds (state) {
-      return state.ads
+    myAds (state, getters) {
+      return state.ads.filter(ad => {
+        return ad.ownerId === getters.user.id
+      })
     },
     adById (state) {
       return adId => {

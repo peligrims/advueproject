@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
+import BuyModalComponent from '@/components/Shared/BuyModal'
 import VueRouter from 'vue-router'
 import store from './store'
 import router from './router'
@@ -8,7 +9,14 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import 'firebase/storage';
+//import './stylus/main.styl';
+//
+//import colors from 'vuetify/lib/util/colors';
 
+
+
+
+Vue.component('app-buy-modal', BuyModalComponent)
 Vue.config.productionTip = false
 
 const firebaseConfig = {
@@ -23,7 +31,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-
+//Vue.use(Vuetify);
 Vue.use(VueRouter)
 new Vue({
   vuetify,

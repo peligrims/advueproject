@@ -1,6 +1,6 @@
 <template>
   <v-app>
-  <v-card  height="1100">
+  <v-card  height="1300">
     <v-app-bar app color="primary">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>
